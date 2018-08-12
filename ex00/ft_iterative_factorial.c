@@ -5,17 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dabeloos <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/12 14:46:24 by dabeloos          #+#    #+#             */
-/*   Updated: 2018/08/12 15:38:50 by dabeloos         ###   ########.fr       */
+/*   Created: 2018/08/12 15:42:24 by dabeloos          #+#    #+#             */
+/*   Updated: 2018/08/12 17:38:05 by dabeloos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		ft_iterative_factorial(int nb)
 {
-	if (nb > 1)
-		return (nb * ft_iterative_factorial(nb - 1));
-	else if (nb > -1)
+	int		result;
+
+	if (nb > -1 && nb < 1)
 		return (1);
-	else
-		return (0);
+	result = 1;
+	while (nb > 1)
+	{
+		result *= nb;
+		nb--;
+	}
+	return (result);
 }
