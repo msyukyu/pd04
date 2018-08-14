@@ -6,41 +6,16 @@
 /*   By: dabeloos <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 14:49:37 by dabeloos          #+#    #+#             */
-/*   Updated: 2018/08/14 16:04:20 by dabeloos         ###   ########.fr       */
+/*   Updated: 2018/08/14 16:06:14 by dabeloos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-
-int					ft_putchar(char c)
-{
-	write(1, &c, 1);
-	return (0);
-}
+int					ft_putchar(char c);
 
 struct				s_chessboard
 {
 	int		chessboard[8][8];
 };
-
-void				ft_show_board(struct s_chessboard board)
-{
-	int	l;
-	int	c;
-
-	l = -1;
-	while (++l < 8)
-	{
-		c = -1;
-		while (++c < 8)
-		{
-			printf(" %d ", board.chessboard[l][c]);
-		}
-		printf("\n");
-	}
-}
 
 struct s_chessboard	ft_initialize_array(void)
 {
@@ -143,18 +118,4 @@ void				ft_eight_queens_puzzle_2(void)
 
 	board = ft_initialize_array();
 	ft_put_a_queen(board, 0);
-}
-
-int					main(int argc, char *argv[])
-{
-	struct s_chessboard	board;
-
-	board = ft_initialize_array();
-	if (argc == 3)
-	{
-		board = ft_restrict_lines(board, atoi(argv[1]), atoi(argv[2]));
-		ft_show_board(board);
-	}
-	ft_eight_queens_puzzle_2();
-	return (0);
 }
