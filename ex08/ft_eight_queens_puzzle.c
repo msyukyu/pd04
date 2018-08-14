@@ -6,12 +6,29 @@
 /*   By: dabeloos <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 14:49:37 by dabeloos          #+#    #+#             */
-/*   Updated: 2018/08/14 09:09:48 by dabeloos         ###   ########.fr       */
+/*   Updated: 2018/08/14 12:41:50 by dabeloos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
+
+void    ft_show_board(int board[][8])
+{
+	int     l;
+	int     c;
+
+	l = -1;
+	while (++l < 8)
+	{
+		c = -1;
+		while (++c < 8)
+		{
+			printf(" %d ", board[l][c]);
+		}
+		printf("\n");
+	}
+}
 
 void	ft_initialize_array(int board[][8])
 {
@@ -31,7 +48,7 @@ void	ft_initialize_array(int board[][8])
 
 int		(*ft_copy_board(int board[][8]))[8]
 {
-	static int	newboard[8][8];
+	int static	newboard[8][8];
 	int			c;
 	int			l;
 
@@ -124,16 +141,7 @@ int		main(int argc, char *argv[])
 	if (argc == 3)
 	{
 		ft_restrict_lines(board, atoi(argv[1]), atoi(argv[2]));
-		l = -1;
-		while (++l < 8)
-		{
-			c = -1;
-			while (++c < 8)
-			{
-				printf(" %d ", board[l][c]);
-			}
-			printf("\n");
-		}
+		ft_show_board(board);
 	}
 	c = ft_eight_queens_puzzle();
 	printf("%d", c);
