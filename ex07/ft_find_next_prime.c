@@ -6,7 +6,7 @@
 /*   By: dabeloos <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 14:01:38 by dabeloos          #+#    #+#             */
-/*   Updated: 2018/08/13 14:46:14 by dabeloos         ###   ########.fr       */
+/*   Updated: 2018/08/14 19:52:45 by dabeloos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int		ft_find_next_prime(int nb)
 		i = 2;
 	else if (nb % 2 == 0)
 		i = nb + 1;
-	else
-		i = nb + 2;
 	while (1)
 	{
 		j = 2;
