@@ -6,7 +6,7 @@
 /*   By: dabeloos <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/12 15:42:24 by dabeloos          #+#    #+#             */
-/*   Updated: 2018/08/12 17:38:05 by dabeloos         ###   ########.fr       */
+/*   Updated: 2018/08/14 19:46:17 by dabeloos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@ int		ft_iterative_factorial(int nb)
 {
 	int		result;
 
-	if (nb > -1 && nb < 1)
-		return (1);
+	if (nb < 0)
+		return (0);
 	result = 1;
 	while (nb > 1)
 	{
