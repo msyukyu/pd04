@@ -6,22 +6,22 @@
 /*   By: dabeloos <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 14:49:37 by dabeloos          #+#    #+#             */
-/*   Updated: 2018/08/14 14:33:35 by dabeloos         ###   ########.fr       */
+/*   Updated: 2018/08/14 14:49:07 by dabeloos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 
-struct		chessboard
+struct				s_chessboard
 {
 	int		chessboard[8][8];
 };
 
-void	ft_show_board(struct chessboard board)
+void				ft_show_board(struct s_chessboard board)
 {
-	int     l;
-	int     c;
+	int	l;
+	int	c;
 
 	l = -1;
 	while (++l < 8)
@@ -35,11 +35,11 @@ void	ft_show_board(struct chessboard board)
 	}
 }
 
-struct chessboard	ft_initialize_array(void)
+struct s_chessboard	ft_initialize_array(void)
 {
-	int		l;
-	int		c;
-	struct chessboard	board;
+	int					l;
+	int					c;
+	struct s_chessboard	board;
 
 	l = -1;
 	while (++l < 8)
@@ -53,11 +53,11 @@ struct chessboard	ft_initialize_array(void)
 	return (board);
 }
 
-struct chessboard	ft_copy_board(struct chessboard board)
+struct s_chessboard	ft_copy_board(struct s_chessboard board)
 {
-	struct chessboard	newboard;
-	int			c;
-	int			l;
+	struct s_chessboard	newboard;
+	int					c;
+	int					l;
 
 	newboard = ft_initialize_array();
 	l = -1;
@@ -72,7 +72,7 @@ struct chessboard	ft_copy_board(struct chessboard board)
 	return (newboard);
 }
 
-struct chessboard	ft_restrict_lines(struct chessboard board, int cl, int cc)
+struct s_chessboard	ft_restrict_lines(struct s_chessboard board, int cl, int cc)
 {
 	int		l;
 	int		c;
@@ -99,11 +99,11 @@ struct chessboard	ft_restrict_lines(struct chessboard board, int cl, int cc)
 	return (board);
 }
 
-int		ft_put_a_queen(struct chessboard board, int line)
+int					ft_put_a_queen(struct s_chessboard board, int line)
 {
-	int		c;
-	int		count;
-	struct chessboard	newboard;
+	int					c;
+	int					count;
+	struct s_chessboard	newboard;
 
 	count = 0;
 	c = 0;
@@ -124,18 +124,18 @@ int		ft_put_a_queen(struct chessboard board, int line)
 	return (count);
 }
 
-int		ft_eight_queens_puzzle(void)
+int					ft_eight_queens_puzzle(void)
 {
-	struct chessboard	board;
+	struct s_chessboard	board;
 
 	board = ft_initialize_array();
 	return (ft_put_a_queen(board, 0));
 }
 
-int		main(int argc, char *argv[])
+int					main(int argc, char *argv[])
 {
-	struct chessboard	board;
-	int		c;
+	struct s_chessboard	board;
+	int					c;
 
 	board = ft_initialize_array();
 	if (argc == 3)
