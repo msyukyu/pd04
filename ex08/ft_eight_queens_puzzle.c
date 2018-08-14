@@ -6,7 +6,7 @@
 /*   By: dabeloos <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 14:49:37 by dabeloos          #+#    #+#             */
-/*   Updated: 2018/08/13 21:59:45 by dabeloos         ###   ########.fr       */
+/*   Updated: 2018/08/14 09:09:48 by dabeloos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	ft_initialize_array(int board[][8])
 
 int		(*ft_copy_board(int board[][8]))[8]
 {
-	static int		newboard[8][8];
-	int		c;
-	int		l;
+	static int	newboard[8][8];
+	int			c;
+	int			l;
 
 	ft_initialize_array(newboard);
 	l = -1;
@@ -48,13 +48,11 @@ int		(*ft_copy_board(int board[][8]))[8]
 	return (newboard);
 }
 
-int		ft_restrict_lines(int board[][8], int cl, int cc)
+void	ft_restrict_lines(int board[][8], int cl, int cc)
 {
 	int		l;
 	int		c;
 
-	if (board[cl][cc] != 0)
-		return (0);
 	l = -1;
 	c = -1;
 	while (++c < 8)
@@ -74,14 +72,12 @@ int		ft_restrict_lines(int board[][8], int cl, int cc)
 				board[cl - c][cc + c] == 0)
 			board[cl - c][cc + c] = cl + 1;
 	}
-	return (1);
 }
 
 int		ft_put_a_queen(int board[][8], int line)
 {
 	int		c;
 	int		count;
-	int		placed;
 
 	count = 0;
 	c = 0;
@@ -89,16 +85,13 @@ int		ft_put_a_queen(int board[][8], int line)
 	{
 		if (board[line][c] == 0)
 		{
-			placed = ft_restrict_lines(board, line, c);
-			if (placed)
+			ft_restrict_lines(board, line, c);
+			if (line == 7)
 			{
-				if (line == 7)
-				{
-					count++;
-				}
-				else
-					count += ft_put_a_queen(ft_copy_board(board), line + 1);
+				count++;
 			}
+			else
+				count += ft_put_a_queen(ft_copy_board(board), line + 1);
 		}
 		c++;
 	}
