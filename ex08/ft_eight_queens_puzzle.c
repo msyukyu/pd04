@@ -27,40 +27,61 @@ void	ft_initialize_array(int board[][8])
 			board[l][c] = 0;
 		}
 	}
-	return (0);
-
 }
 
-void	ft_restrict_lines(int board[][8], int cl, int cc)
+int		(*ft_copy_board(int board[][8]))[8]
+{
+	static int		newboard[8][8];
+	int		c;
+	int		l;
+
+	ft_initialize_array(newboard);
+	l = -1;
+	while (++l < 8)
+	{
+		c = -1;
+		while (++c < 8)
+		{
+			newboard[l][c] = board[l][c];
+		}
+	}
+	return (newboard);
+}
+
+int		ft_restrict_lines(int board[][8], int cl, int cc)
 {
 	int		l;
 	int		c;
 
+	if (board[cl][cc] != 0)
+		return (0);
 	l = -1;
 	c = -1;
 	while (++c < 8)
 	{
 		if (board[cl][c] == 0)
-			board[cl][c] = 1;
+			board[cl][c] = cl + 1;
 		if (board[c][cc] == 0)
-			board[c][cc] = 1;
+			board[c][cc] = cl + 1;
 	}
 	c = -8;
 	while (++c < 8)
 	{
 		if (cc - c > -1 && cl - c > -1 && cc - c < 8 && cl - c < 8 &&
 				board[cl - c][cc - c] == 0)
-			board[cl - c][cc - c] = 1;
+			board[cl - c][cc - c] = cl + 1;
 		if (cc + c > -1 && cl - c > -1 && cc + c < 8 && cl - c < 8 &&
 				board[cl - c][cc + c] == 0)
-			board[cl - c][cc + c] = 1;
+			board[cl - c][cc + c] = cl + 1;
 	}
+	return (1);
 }
 
 int		ft_put_a_queen(int board[][8], int line)
 {
 	int		c;
 	int		count;
+	int		placed;
 
 	count = 0;
 	c = 0;
@@ -68,13 +89,16 @@ int		ft_put_a_queen(int board[][8], int line)
 	{
 		if (board[line][c] == 0)
 		{
-			ft_restrict_lines(board, line, c);
-			if (line == 7)
+			placed = ft_restrict_lines(board, line, c);
+			if (placed)
 			{
-				count++;
+				if (line == 7)
+				{
+					count++;
+				}
+				else
+					count += ft_put_a_queen(ft_copy_board(board), line + 1);
 			}
-			else
-				count += ft_put_a_queen(ft_copy_board(board), line + 1);
 		}
 		c++;
 	}
@@ -86,7 +110,7 @@ int		ft_eight_queens_puzzle(void)
 	int		board[8][8];
 
 	ft_initialize_array(board);
-
+	return (ft_put_a_queen(board, 0));
 }
 
 int		main(int argc, char *argv[])
@@ -118,5 +142,7 @@ int		main(int argc, char *argv[])
 			printf("\n");
 		}
 	}
+	c = ft_eight_queens_puzzle();
+	printf("%d", c);
 	return (0);
 }
