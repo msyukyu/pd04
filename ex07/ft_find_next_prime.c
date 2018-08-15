@@ -12,24 +12,23 @@
 
 int		ft_find_next_prime(int nb)
 {
-	int		i;
 	int		j;
 
 	if (nb < 2)
-		i = 2;
+		nb = 2;
 	else if (nb % 2 == 0)
-		i = nb + 1;
+		nb = nb + 1;
 	while (1)
 	{
 		j = 2;
-		while (j * j <= i)
+		while (j * j <= nb)
 		{
-			if (i % j == 0)
+			if (nb % j == 0)
 				break ;
 			j++;
 		}
-		if (j * j > i)
-			return (i);
-		i = i + 2;
+		if (j * j > nb)
+			return (nb);
+		nb += 2;
 	}
 }
