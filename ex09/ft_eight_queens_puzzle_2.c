@@ -6,7 +6,7 @@
 /*   By: dabeloos <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 14:49:37 by dabeloos          #+#    #+#             */
-/*   Updated: 2018/08/14 16:06:14 by dabeloos         ###   ########.fr       */
+/*   Updated: 2018/08/15 10:28:55 by dabeloos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,8 @@ struct s_chessboard	ft_copy_board(struct s_chessboard board)
 
 struct s_chessboard	ft_restrict_lines(struct s_chessboard board, int cl, int cc)
 {
-	int		l;
 	int		c;
 
-	l = -1;
 	c = -1;
 	if (board.chessboard[cl][cc] == 0)
 		board.chessboard[cl][cc] = cl + 1;
